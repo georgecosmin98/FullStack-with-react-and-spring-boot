@@ -1,8 +1,9 @@
 import React from 'react';
-
+import './Counter.css'
 export default function Counter(){
     return(
       <div className="counter">
-          Counter
+          <button>+1</button>
+          <span className="count">0</span>
       </div>);
   }
