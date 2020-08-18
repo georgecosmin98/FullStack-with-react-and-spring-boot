@@ -16,14 +16,14 @@ class Counter extends Component {
     render() {
         return (
             <div className="counter">
-                <button onClick={this.increment}>+1</button>
+                <button onClick={this.increment}>+{this.props.by}</button>
                 <span className="count">{this.state.counter}</span>
             </div>);
     }
 
     increment() {//Update state
         this.setState({
-            counter: this.state.counter + 1
+            counter: this.state.counter + this.props.by
         });
     }
 }
