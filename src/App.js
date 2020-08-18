@@ -5,29 +5,28 @@ import ThirdComponent from './components/learning-examples/ThirdComponent';
 import Counter from './components/counter/Counter';
 import './App.css';
 
-class App extends Component{
-  render(){
+class App extends Component {
+  render() {
     return (
       <div className="App">
-        <Counter by={1}/>
-        <Counter by={5}/>
-        <Counter by={10}/>
+        <Counter />
       </div>
     )
   }
 }
 
-class LearningComponents extends Component{
-  render(){
+class LearningComponents extends Component {
+  render() {
     return (
       <div className="LearningComponents">
-        Hello world! What you doing? :D 
+        Hello world! What you doing? :D
         <FirstComponent />
-        <SecondComponent/>
-        <ThirdComponent/>
+        <SecondComponent />
+        <ThirdComponent />
       </div>
     )
   }
 }
+
 
 export default App;
