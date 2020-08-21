@@ -1,12 +1,26 @@
 import React, { Component } from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+
 
 class TodoApp extends Component {
     render() {
         return (
             <div className="TodoApp">
-                <LoginComponent />
+                <Router>
+                    <Route path="/" exact component={LoginComponent} />
+                    <Route path="/login" component={LoginComponent} />
+                    <Route path="/welcome" component={WelcomeComponent} />
+                </Router>
+                {/* <LoginComponent />
+                <WelcomeComponent /> */}
             </div>
         )
+    }
+}
+
+class WelcomeComponent extends Component {
+    render() {
+        return <div>Welcome in28minutes</div>
     }
 }
 
@@ -55,7 +69,7 @@ class LoginComponent extends Component {
         return (
             <div>
                 {/*<ShowInvalidCredentials hasLoginFailed={this.state.hasLoginFailed} />*/}
-                {this.state.hasLoginFailed && <div>Invalid Credentials</div>} {/*If condition is true => show message(div)*/ }
+                {this.state.hasLoginFailed && <div>Invalid Credentials</div>} {/*If condition is true => show message(div)*/}
                 {/*<ShowLoginSuccessMessage showSuccessMessage={this.state.showSuccessMessage} />*/}
                 {this.state.showSuccessMessage && <div>Login Succesfully</div>}
                 User name: <input type="text" name="username" value={this.state.username} onChange={this.handleChange} />
