@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 
 class TodoApp extends Component {
@@ -7,9 +7,12 @@ class TodoApp extends Component {
         return (
             <div className="TodoApp">
                 <Router>
-                    <Route path="/" exact component={LoginComponent} />
-                    <Route path="/login" component={LoginComponent} />
-                    <Route path="/welcome" component={WelcomeComponent} />
+                    <Switch>
+                        <Route path="/" exact component={LoginComponent} />
+                        <Route path="/login" component={LoginComponent} />
+                        <Route path="/welcome" component={WelcomeComponent} />
+                        <Route component={ErrorComponent} />
+                    </Switch>
                 </Router>
                 {/* <LoginComponent />
                 <WelcomeComponent /> */}
@@ -79,17 +82,7 @@ class LoginComponent extends Component {
     }
 }
 
-// function ShowInvalidCredentials(props) {
-//     if (props.hasLoginFailed) {
-//         return <div>Invalid Credentials</div>
-//     }
-//     return null
-// }
-
-// function ShowLoginSuccessMessage(props) {
-//     if (props.showSuccessMessage) {
-//         return <div>Login succesfully</div>
-//     }
-//     return null
-// }
+function ErrorComponent() {
+    return <div>An error occurred. I don't know what to do! Contact support at abcde-fghijk</div>
+}
 export default TodoApp
