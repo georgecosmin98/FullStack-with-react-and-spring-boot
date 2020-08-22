@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 
 
 class TodoApp extends Component {
@@ -30,9 +30,9 @@ class ListTodosComponent extends Component {
         this.state = {
             todos:
                 [
-                    { id: 1, description: "Learn React" },
-                    { id: 2, description: "Become an expert at React" },
-                    { id: 3, description: "Hello world!" },
+                    { id: 1, description: "Learn React", done: false, targetDate: new Date() },
+                    { id: 2, description: "Become an expert at React", done: false, targetDate: new Date() },
+                    { id: 3, description: "Hello world!", done: false, targetDate: new Date() },
 
 
                 ]
@@ -46,16 +46,20 @@ class ListTodosComponent extends Component {
                     <tr>
                         <th>id</th>
                         <th>description</th>
+                        <th>isCompleted?</th>
+                        <th>targetDate</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {   this.state.todos.map(
-                        todo => 
-                        <tr>
-                            <td>{todo.id}</td>
-                            <td>{todo.description}</td>
+                    {this.state.todos.map(
+                        todo =>
+                            <tr>
+                                <td>{todo.id}</td>
+                                <td>{todo.description}</td>
+                                <td>{todo.done.toString()}</td>
+                                <td>{todo.targetDate.toLocaleDateString()}</td>
 
-                        </tr>)
+                            </tr>)
                     }
                 </tbody>
             </table>
@@ -66,7 +70,7 @@ class ListTodosComponent extends Component {
 
 class WelcomeComponent extends Component {
     render() {
-        return <div>Welcome {this.props.match.params.name}</div>
+        return <div>Welcome {this.props.match.params.name}. You can manage your todos <Link to="/todos">here</Link>.</div>
     }
 }
 
