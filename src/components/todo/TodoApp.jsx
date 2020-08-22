@@ -52,12 +52,11 @@ class LoginComponent extends Component {
     loginClicked(event) {
         //in28minutes,dummy
         if (this.state.username === "in28minutes" && this.state.password === "dummy") {
-            console.log("Successful")
+            this.props.history.push("/welcome")
             this.setState({ showSuccessMessage: true })
             this.setState({ hasLoginFailed: false })
         }
         else {
-            console.log("Failed")
             this.setState({ showSuccessMessage: false })
             this.setState({ hasLoginFailed: true })
         }
