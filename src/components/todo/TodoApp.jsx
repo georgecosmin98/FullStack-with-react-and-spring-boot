@@ -38,7 +38,7 @@ class HeaderComponent extends Component {
                     </ul>
                     <ul className="navbar-nav navbar-collapse justify-content-end">
                         <li className="nav-link"><Link to="/login">Login</Link></li>
-                        <li className="nav-link"><Link to="/logout">LogOut</Link></li>
+                        <li className="nav-link"><Link to="/logout" onClick={AuthenticationService.logout}>LogOut</Link></li>
                     </ul>
                 </nav>
             </header>
@@ -156,7 +156,7 @@ class LoginComponent extends Component {
     loginClicked(event) {
         //in28minutes,dummy
         if (this.state.username === "in28minutes" && this.state.password === "dummy") {
-            AuthenticationService.registerSuccessfulLogin();
+            AuthenticationService.registerSuccessfulLogin(this.state.username,this.state.password);
             this.props.history.push(`/welcome/${this.state.username}`)
             this.setState({ showSuccessMessage: true })
             this.setState({ hasLoginFailed: false })

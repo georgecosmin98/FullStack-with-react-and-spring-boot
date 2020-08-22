@@ -24,6 +24,11 @@ function () {
       console.log("Register successful log");
       sessionStorage.setItem('authenticatedUser', username);
     }
+  }, {
+    key: "logout",
+    value: function logout() {
+      sessionStorage.removeItem('authenticatedUser');
+    }
   }]);
 
   return AuthenticationService;
