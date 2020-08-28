@@ -32,6 +32,11 @@ function () {
     value: function executeHelloWorldBeanService() {
       return _axios["default"].get('http://localhost:8080/hello-world-bean');
     }
+  }, {
+    key: "executeHelloWorldPathVariableService",
+    value: function executeHelloWorldPathVariableService(name) {
+      return _axios["default"].get("http://localhost:8080/hello-world/path-variable/".concat(name));
+    }
   }]);
 
   return HelloWorldService;
