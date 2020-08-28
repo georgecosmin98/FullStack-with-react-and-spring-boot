@@ -27,6 +27,11 @@ function () {
     value: function executeHelloWorldService() {
       return _axios["default"].get('http://localhost:8080/hello-world');
     }
+  }, {
+    key: "executeHelloWorldBeanService",
+    value: function executeHelloWorldBeanService() {
+      return _axios["default"].get('http://localhost:8080/hello-world-bean');
+    }
   }]);
 
   return HelloWorldService;
