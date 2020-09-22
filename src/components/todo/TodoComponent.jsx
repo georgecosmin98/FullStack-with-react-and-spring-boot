@@ -16,14 +16,15 @@ class TodoComponent extends Component {
         this.validate = this.validate.bind(this)
     }
 
-    componentDidMount(){
+    componentDidMount() {
         let username = AuthentificationService.getLoggedInUser();
 
-        TodoDataService.retrieveTodo(username,this.state.id)
-        .then(response => this.setState({
-            description: response.data.description,
-            targetDate: moment(response.data.targetDate).format('YYYY-MM-DD')
-    }))}
+        TodoDataService.retrieveTodo(username, this.state.id)
+            .then(response => this.setState({
+                description: response.data.description,
+                targetDate: moment(response.data.targetDate).format('YYYY-MM-DD')
+            }))
+    }
 
     validate(values) {
         let errors = {}
@@ -33,7 +34,7 @@ class TodoComponent extends Component {
         else if (values.description.length < 5) {
             errors.description = 'Enter atleast 5 Characters in Description'
         }
-        if(!moment(values.targetDate).isValid()){
+        if (!moment(values.targetDate).isValid()) {
             errors.targetDate = 'Enter a valid Target Date'
         }
         console.log(values)
@@ -41,6 +42,13 @@ class TodoComponent extends Component {
     }
 
     onSubmit(values) {
+        let username = AuthentificationService.getLoggedInUser();
+        TodoDataService.updateTodo(username, this.state.id, {
+            id: this.state.id,
+            description: values.description,
+            targetDate: values.targetDate
+        }).then(
+            () => this.props.history.push(`/todos`))
         console.log(values)
     }
 
