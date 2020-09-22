@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import moment from 'moment'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
+import TodoDataService from '../api/todo/TodoDataService'
+import AuthentificationService from '../todo/AuthenticationService'
 class TodoComponent extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            id: 1,
+            id: this.props.match.params.id,
             description: 'Learn Forms Now',
             targetDate: moment(new Date()).format('YYYY-MM-DD')
         }
@@ -13,6 +15,15 @@ class TodoComponent extends Component {
         this.onSubmit = this.onSubmit.bind(this)
         this.validate = this.validate.bind(this)
     }
+
+    componentDidMount(){
+        let username = AuthentificationService.getLoggedInUser();
+
+        TodoDataService.retrieveTodo(username,this.state.id)
+        .then(response => this.setState({
+            description: response.data.description,
+            targetDate: moment(response.data.targetDate).format('YYYY-MM-DD')
+    }))}
 
     validate(values) {
         let errors = {}
@@ -45,6 +56,7 @@ class TodoComponent extends Component {
                         validateOnChange={false}
                         validateOnBlur={false}
                         validate={this.validate}
+                        enableReinitialize={true}
                     >
                         {
                             (props) => (
