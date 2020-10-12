@@ -1,4 +1,4 @@
-package com.in28minutes.rest.webservices.restfulwebservices;
+package com.in28minutes.rest.webservices.restfulwebservices.todo;
 
 import com.in28minutes.rest.webservices.restfulwebservices.todo.Todo;
 import org.springframework.stereotype.Service;
@@ -11,7 +11,7 @@ import java.util.List;
 public class TodoHardcodedService {
 
     private static List<Todo> todos = new ArrayList();
-    private static int idCounter = 0;
+    private static long idCounter = 0;
 
     static {
         todos.add(new Todo(++idCounter, "in28minutes", "Learn to dance", new Date(), false));
